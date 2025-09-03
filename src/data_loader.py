@@ -1,7 +1,10 @@
 class DataLoader:
 
+    def __init__(self, filepath):
+        self.filepath = filepath
+
     def load_data(self):
-        data = open('data/shakespeare.txt', 'r').read()
+        data = open(self.filepath, 'r').read()
         chars = list(set(data))
         data_size, vocab_size = len(data), len(chars)
         print("data has %d characters, %d unique" % (data_size, vocab_size))
@@ -9,6 +12,7 @@ class DataLoader:
         ix_to_char = {i:ch for i, ch in enumerate(chars)}
 
         return {
+            "data": data,
             "data_size": data_size, 
             "vocab_size": vocab_size, 
             "char_to_ix": char_to_ix, 
